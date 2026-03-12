@@ -1,0 +1,28 @@
+{
+  "name": "playwright",
+  "targets": {
+    "install": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm ci",
+        "cwd": "libs/playwright"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["install"],
+      "options": {
+        "command": "npm run build",
+        "cwd": "libs/playwright"
+      }
+    },
+    "install-browsers": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx playwright install chromium",
+        "cwd": "libs/playwright"
+      }
+    }
+  }
+}
